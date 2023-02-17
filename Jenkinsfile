@@ -40,18 +40,14 @@ pipeline {
                     			recordIssues enabledForFailure: true, tool: checkStyle()
                 		}
 	            	}
-        	}*/
+        	}
 		stage('sonar'){
 			/*when {
 				anyOf{branch 'sonar';branch 'master'}
 			}*/
-			/*steps{
-				withCredentials([string(credentialsId: 'SONAR_KEY', variable: 'CLE')]) {}
-				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=$CLE'
-			}*/
-			
 			steps{
-				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=sqp_b222170a9172d500fd3d9b12d0bdc8115edd14a4'
+				withCredentials([string(credentialsId: 'SONAR_KEY', variable: 'SECRET')]) {}
+				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=$SECRET'
 			}
 		}
 		stage('findbugs'){
