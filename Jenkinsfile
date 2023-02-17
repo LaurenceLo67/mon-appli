@@ -3,7 +3,8 @@ def urlSonar = ""
 pipeline {
 	agent any
 	environment {
-            SONAR_URL = "http://localhost:9000"
+            SONAR_URL = "http://localhost"
+            SONAR_PORT = "9000"
         }
 	stages {
 		stage('SCM') {
@@ -44,7 +45,7 @@ pipeline {
         	}
 		stage('sonar'){
 			steps{
-				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL -Dsonar.login=sqp_b222170a9172d500fd3d9b12d0bdc8115edd14a4'
+				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=sqp_b222170a9172d500fd3d9b12d0bdc8115edd14a4'
 			}
 		}
 		
