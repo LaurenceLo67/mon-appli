@@ -5,7 +5,7 @@ pipeline {
             SONAR_PORT = "9000"
         }
 	stages {
-		stage('SCM') {
+		/*stage('SCM') {
 			steps {
 				checkout scm
 			}
@@ -47,6 +47,15 @@ pipeline {
 			}*/
 			steps{
 				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=sqp_b222170a9172d500fd3d9b12d0bdc8115edd14a4'
+			}
+		}*/
+		stage('findbugs'){
+			steps{
+				sh 'mvn findbugs:findbugs'
+			}post{
+				always{
+					recordIssues enabledForFailure:true, tool:spotBugs(pattern:'**/target/findbugsXml.xml')
+				}
 			}
 		}
 		
