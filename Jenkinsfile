@@ -5,12 +5,12 @@ pipeline {
             SONAR_PORT = "9000"
         }
 	stages {
-		/*stage('SCM') {
+		stage('SCM') {
 			steps {
 				checkout scm
 			}
 		}
-		stage('build') {
+		/*stage('build') {
 			agent {
 				docker {
 					image 'maven:3.6.0-jdk-8-alpine'
