@@ -46,8 +46,8 @@ pipeline {
 				anyOf{branch 'sonar';branch 'master'}
 			}*/
 			steps{
-				withCredentials([string(credentialsId: 'SONAR_KEY', variable: 'SECRET')]) {}
-				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=$SECRET'
+				withCredentials([string(credentialsId: 'SONAR_KEY', variable: 'CLE')]) {}
+				sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=projet1 -Dsonar.host.url=$SONAR_URL:$SONAR_PORT -Dsonar.login=$CLE'
 			}
 			/*
 			steps{
