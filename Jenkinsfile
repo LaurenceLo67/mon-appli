@@ -1,5 +1,3 @@
-def urlSonar = ""
-
 pipeline {
 	agent any
 	environment {
