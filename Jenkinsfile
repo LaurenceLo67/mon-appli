@@ -37,13 +37,6 @@ pipeline {
                 		}
 	            	}
         	}
-		stage('sonar'){
-			steps{
-				sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=projet1 \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.login=sqp_b222170a9172d500fd3d9b12d0bdc8115edd14a4'
-			}
-		}
+		
 	}
 }
